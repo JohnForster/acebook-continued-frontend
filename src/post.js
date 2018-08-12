@@ -1,5 +1,6 @@
 import React from "react";
 import {Comment} from './comment';
+import {NewCommentForm} from './newCommentForm';
 import css from './post.css';
 import moment from "moment";
 
@@ -30,6 +31,7 @@ export class Post extends React.Component {
           {message}
         </div>
         <div className="post_footer">
+          <NewCommentForm post_id={this.state.id} />
           {commentsList(comments)}
         </div>
       </div>
@@ -37,8 +39,8 @@ export class Post extends React.Component {
   }
 
   componentDidMount() {
-    let id = this.state.id
-    fetch('https://acebook2018.herokuapp.com/comments?post_id=' + id)
+    let id = this.state.id;
+    fetch('http://localhost:3000/comments?post_id=' + id)
     .then(response => response.json())
     .then(data =>
       this.setState({comments: data})

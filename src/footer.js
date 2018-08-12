@@ -13,4 +13,4 @@ export class Footer extends React.Component {
   }
 }
 
-ReactDOM.render(<Footer />, document.getElementById('footer'));
+//ReactDOM.render(<Footer />, document.getElementById('footer'));

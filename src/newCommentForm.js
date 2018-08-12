@@ -1,11 +1,12 @@
 import React from "react";
 import axios from 'axios';
 
-export class NewPostForm extends React.Component {
+export class NewCommentForm extends React.Component {
   constructor(props) {
     super(props);
+    const post_id = props.post_id;
     this.state = {
-      formFields: {message: '', user_id: props.user_id},
+      formFields: {body: '', user_id:'1', post_id: post_id},
       updateParent: props.updateParent
     };
 
@@ -25,7 +26,7 @@ export class NewPostForm extends React.Component {
     event.preventDefault();
     let formFields = this.state.formFields;
     const updateParent = this.state.updateParent;
-    axios.post('http://localhost:3000/posts/new', formFields)
+    axios.post(`https://acebook2018.herokuapp.com/comments/new`, formFields)
     .then(function(response){
       updateParent();
     })
@@ -35,8 +36,8 @@ export class NewPostForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          <b>Write a new post</b><br />
-          <input type="text" name="message" value={this.state.value} onChange={this.handleChange} id="new_post"/>
+          Add a comment: <br/>
+          <input type="text" name="body" value={this.state.value} onChange={this.handleChange}/>
         </label>
         <input type="submit" value="Submit"/>
       </form>

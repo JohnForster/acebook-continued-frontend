@@ -4,10 +4,11 @@ import {NewPostForm} from "./newPostForm";
 import moment from "moment";
 
 export class Timeline extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       posts: [],
+      user_id: props.user_id
     };
     this.fetchPosts = this.fetchPosts.bind(this);
   }
@@ -17,7 +18,7 @@ export class Timeline extends React.Component {
     return (
       <div className="timeline_content">
         <div className="form_container">
-          <NewPostForm updateParent={this.fetchPosts}/>
+          <NewPostForm updateParent={this.fetchPosts} user_id={this.state.user_id}/>
         </div>
         <div className="posts_content">
           {postsList(posts)}
@@ -38,7 +39,7 @@ export class Timeline extends React.Component {
 
   fetchPosts() {
     console.log('API Called');
-    fetch('https://acebook2018.herokuapp.com/posts')
+    fetch('http://localhost:3000/posts')
         .then(response => response.json())
         .then(data =>
             this.setState({posts: data})
