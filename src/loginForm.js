@@ -43,13 +43,9 @@ export class LoginForm extends React.Component {
     const setupSession = this.state.setupSession;
     axios.post('http://localhost:3000/login', formFields)
     .then(function(response){
-      console.log('A');
-      if (response.status == 200){
+      if (response.status === 200){
         const data = response.data
-        console.log(response)
-        console.log(data)
-        console.log(data.user_id)
-        setupSession(data.user_id, data.token);
+        setupSession(data.user_id, data.session_id);
       } // else return an error
     })
   }

@@ -11,7 +11,7 @@ class App extends React.Component {
     super();
     this.state = {
       user_id: '',
-      token: ''
+      session_id: ''
     };
     this.setupSession = this.setupSession.bind(this)
   }
@@ -31,23 +31,15 @@ class App extends React.Component {
   }
 
   content(){
-    return (this.state.token === '' ? <LoginForm setupSession={this.setupSession}/> : <Timeline />)
+    if (this.state.session_id === ''){
+      return <LoginForm setupSession={this.setupSession}/>
+    } else {
+      return <Timeline user_id={this.state.user_id}/>
+    }
   }
 
-  setupSession(user_id, token){
-    console.log(`Setting up session. user_id: ${user_id}, token: ${token}.`)
-    this.setState({user_id: user_id, token: token});
-  }
-}
-
-export class Footer extends React.Component {
-  render(){
-    return(
-      <div className="container_footer">
-        <p><b>Acebook</b> was a group project by <a href="https://github.com/Ben-893">Ben</a>, <a href="https://github.com/archmagos">Fred</a>, <a href="https://github.com/JohnForster">John</a>, <a href="https://github.com/laythq">Layth</a> & <a href="https://github.com/YvCodeHong">Yvonne</a>.</p>
-        <p>Created during week nine of the <b>Makers Academy</b> bootcamp in August 2018.</p>
-      </div>
-    )
+  setupSession(user_id, session_id){
+    this.setState({user_id: user_id, session_id: session_id});
   }
 }
 

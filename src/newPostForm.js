@@ -5,7 +5,7 @@ export class NewPostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formFields: {message: '', user_id:'1'},
+      formFields: {message: '', user_id: props.user_id},
       updateParent: props.updateParent
     };
 
@@ -25,7 +25,7 @@ export class NewPostForm extends React.Component {
     event.preventDefault();
     let formFields = this.state.formFields;
     const updateParent = this.state.updateParent;
-    axios.post('https://acebook2018.herokuapp.com/posts/new', formFields)
+    axios.post('http://localhost:3000/posts/new', formFields)
     .then(function(response){
       updateParent();
     })
