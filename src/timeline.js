@@ -39,7 +39,7 @@ export class Timeline extends React.Component {
 
   fetchPosts() {
     console.log('API Called');
-    fetch('https://acebook2018.herokuapp.com/posts')
+    fetch('http://localhost:3000/posts')
         .then(response => response.json())
         .then(data =>
             this.setState({posts: data})

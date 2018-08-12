@@ -39,7 +39,7 @@ export class Post extends React.Component {
   }
 
   componentDidMount() {
-    let id = this.state.id
+    let id = this.state.id;
     fetch('http://localhost:3000/comments?post_id=' + id)
     .then(response => response.json())
     .then(data =>
