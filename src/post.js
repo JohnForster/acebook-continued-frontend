@@ -1,5 +1,6 @@
 import React from "react";
 import {Comment} from './comment';
+import {NewCommentForm} from './newCommentForm';
 import css from './post.css';
 
 export class Post extends React.Component {
@@ -27,6 +28,7 @@ export class Post extends React.Component {
           {message}
         </div>
         <div className="post_footer">
+          <NewCommentForm post_id={this.state.id} />
           {commentsList(comments)}
         </div>
       </div>
