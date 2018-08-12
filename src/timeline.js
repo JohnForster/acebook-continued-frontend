@@ -1,6 +1,7 @@
 import React from "react";
 import {Post} from "./post";
 import {NewPostForm} from "./newPostForm";
+import moment from "moment";
 
 export class Timeline extends React.Component {
   constructor() {
@@ -14,11 +15,14 @@ export class Timeline extends React.Component {
   render() {
     const posts = this.state.posts;
     return (
-
-        <div>
+      <div className="timeline_content">
+        <div className="form_container">
           <NewPostForm updateParent={this.fetchPosts}/>
+        </div>
+        <div className="posts_content">
           {postsList(posts)}
         </div>
+      </div>
     )
   }
   componentDidMount() {
@@ -44,9 +48,11 @@ export class Timeline extends React.Component {
 
 function postsList(posts) {
   return posts.map(function (post) {
+    var date = new Date(post.created_at)
     return <Post
+        user={post.user_name}
         message={post.message}
-        time={post.created_at}
+        time={moment(date).format('MMMM D') + ' at ' + moment(date).format('h:mma')}
         id={post.id}
     />
   })
